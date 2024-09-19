@@ -1,2 +1,106 @@
+# Enviroment
 venv
 .env
+
+### Python ###
+# Byte-compiled / optimized / DLL files
+__localcode
+__pycache__/
+*.py[cod]
+*$py.class
+
+# C extensions
+*.so
+
+# Backup files
+*.bak
+
+# Distribution / packaging
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+static/
+bin/
+
+# Installer logs
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Unit test / coverage reports
+htmlcov/
+.tox/
+.nox/
+
+.coverage
+.coverage.*
+.coveragerc
+.cache
+
+nosetests.xml
+coverage.xml
+*.cover
+*.py,cover
+.hypothesis/
+.pytest_cache/
+cover/
+
+# SageMath parsed files
+*.sage.py
+
+# Translations
+*.mo
+*.pot
+
+# Django stuff:
+*.log
+*.pyc
+local_settings.py
+_local_settings.py
+static/
+media/
+
+# PEP 582; used by e.g. github.com/David-OConnor/pyflow and github.com/pdm-project/pdm
+__pypackages__/
+
+# mkdocs documentation
+/site
+
+# mypy
+.mypy_cache/
+.dmypy.json
+dmypy.json
+
+# ruff
+.ruff_cache/
+
+# LSP config files
+pyrightconfig.json
+
+# Test database
+database.db
+
+# sftp configuration file
+sftp-config.json
+
+# Visual Studio Code #
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+.history
