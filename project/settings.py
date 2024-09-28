@@ -13,6 +13,11 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 import os
 from pathlib import Path
 
+if os.environ.get('PROJECT_ENV', None) is None:
+    from dotenv import load_dotenv
+
+    load_dotenv()
+
 from django.contrib.messages import constants
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -28,7 +33,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY', 'INSECURE')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True if os.environ.get('PROJECT_ENV') == 'development' else False
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS: list[str] = ['*']
 
 
 # Application definition
@@ -43,6 +48,7 @@ INSTALLED_APPS = [
     'debug_toolbar',
     'recipes',
     'authors',
+    'tag',
 ]
 
 MIDDLEWARE = [
@@ -80,23 +86,23 @@ WSGI_APPLICATION = 'project.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': os.environ.get('DATABASE_ENGINE'),
-        'NAME': os.environ.get('DATABASE_NAME'),
-        'USER': os.environ.get('DATABASE_USER'),
-        'PASSWORD': os.environ.get('DATABASE_PASSWORD'),
-        'HOST': os.environ.get('DATABASE_HOST'),
-        'PORT': os.environ.get('DATABASE_PORT'),
-    }
-}
-
 # DATABASES = {
 #    'default': {
-#        'ENGINE': 'django.db.backends.sqlite3',
-#        'NAME': BASE_DIR / 'db.sqlite3',
+#        'ENGINE': os.environ.get('DATABASE_ENGINE'),
+#        'NAME': os.environ.get('DATABASE_NAME'),
+#        'USER': os.environ.get('DATABASE_USER'),
+#        'PASSWORD': os.environ.get('DATABASE_PASSWORD'),
+#        'HOST': os.environ.get('DATABASE_HOST'),
+#        'PORT': os.environ.get('DATABASE_PORT'),
 #    }
 # }
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+    }
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
@@ -132,11 +138,11 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
+STATIC_URL = '/static/'
 STATIC_ROOT = BASE_DIR / 'static'
-STATIC_URL = 'static/'
-STATICFILES_DIRS = [BASE_DIR / 'resources']
+STATICFILES_DIRS = [BASE_DIR / 'resources', BASE_DIR / 'base_static']
 
-MEDIA_URL = 'media/'
+MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 
 # Default primary key field type
