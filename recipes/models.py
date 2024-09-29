@@ -1,7 +1,10 @@
+from collections import defaultdict
+
 from django.contrib.auth.models import User
 
 # from django.contrib.contenttypes.fields import GenericRelation
 from django.db import models
+from django.forms import ValidationError
 from django.urls import reverse
 from django.utils.text import slugify
 
@@ -54,3 +57,16 @@ class Recipe(models.Model):
             self.slug = slug
 
         return super().save(*args, **kwargs)
+
+    def clean(self, *args, **kwargs):
+        error_messages = defaultdict(list)
+
+        recipe_from_db = Recipe.objects.filter(
+            title__iexact=self.title
+        ).first()
+
+        if recipe_from_db and recipe_from_db.pk != self.pk:
+            error_messages['title'].append('This title already exists.')
+
+        if len(error_messages) > 0:
+            raise ValidationError(error_messages)
