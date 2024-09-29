@@ -1,5 +1,6 @@
 import os
 
+from django.utils import translation
 from django.views.generic import ListView
 
 from recipes.models import Recipe
@@ -31,9 +32,12 @@ class RecipeBaseListView(ListView):
             self.request, context.get('recipes'), PER_PAGE
         )
 
+        html_language = translation.get_language()
+
         context.update({
             'recipes': page_obj,
             'pagination_range': pagination_range,
+            'html_language': html_language,
         })
 
         return context
