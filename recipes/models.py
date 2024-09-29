@@ -26,7 +26,7 @@ class Recipe(models.Model):
     preparation_time_unit = models.CharField(max_length=35)
     servings = models.IntegerField()
     servings_unit = models.CharField(max_length=35)
-    preparation_steps = models.TextField(max_length=255)
+    preparation_steps = models.TextField()
     preparation_steps_is_html = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
@@ -43,7 +43,7 @@ class Recipe(models.Model):
     )
     author = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
     # tags = GenericRelation(Tag, related_query_name='recipes')
-    tags = models.ManyToManyField(Tag)
+    tags = models.ManyToManyField(Tag, blank=True, default='')
 
     def __str__(self):
         return self.title
