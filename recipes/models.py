@@ -9,6 +9,7 @@ from django.urls import reverse
 from django.utils.text import slugify
 from django.utils.translation import gettext_lazy as _
 
+from resources.utils.images import resize_image
 from tag.models import Tag
 
 
@@ -57,7 +58,15 @@ class Recipe(models.Model):
             slug = f'{slugify(self.title)}'
             self.slug = slug
 
-        return super().save(*args, **kwargs)
+        saved = super().save(*args, **kwargs)
+
+        if self.cover:
+            try:
+                self.cover = resize_image(self.cover, 840)
+            except FileNotFoundError:
+                ...
+
+        return saved
 
     def clean(self, *args, **kwargs):
         error_messages = defaultdict(list)
