@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-09-29 17:04+0100\n"
+"POT-Creation-Date: 2024-09-30 08:23+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,6 +18,18 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n == 1 ? 0 : n != 0 && n % 1000000 == 0 ? "
 "1 : 2;\n"
+
+#: .\recipes\models.py:23
+msgid "Title"
+msgstr "Título"
+
+#: .\recipes\models.py:77
+msgid "Recipe"
+msgstr "Receta"
+
+#: .\recipes\models.py:78
+msgid "Recipes"
+msgstr "Recetas"
 
 #: .\recipes\templates\recipes\partials\recipe.html:61
 msgid "Preparation"
