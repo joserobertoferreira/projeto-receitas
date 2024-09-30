@@ -1,6 +1,6 @@
 from django.urls import path
 
-from recipes import views
+from recipes import api, views
 
 app_name = 'recipes'
 
@@ -23,5 +23,11 @@ urlpatterns = [
         'recipes/api/v1/<int:pk>/',
         views.RecipeDetailAPI.as_view(),
         name='recipes_api_v1_detail',
+    ),
+    path('recipes/api/v2/', api.recipe_api_list, name='recipes_api_v2'),
+    path(
+        'recipes/api/v2/<int:pk>/',
+        api.recipe_api_detail,
+        name='recipes_api_v2_detail',
     ),
 ]
